@@ -5,8 +5,8 @@ import 'serp_api_google_hotels_models.dart';
 part 'serp_api_google_hotels_client.g.dart';
 
 @RestApi(baseUrl: 'https://serpapi.com')
-abstract class SerpApiGoogleHotelClient {
-  factory SerpApiGoogleHotelClient(Dio dio, {String baseUrl}) =
+abstract class SerpApiGoogleHotelsClient {
+  factory SerpApiGoogleHotelsClient(Dio dio, {String baseUrl}) =
       _SerpApiGoogleHotelClient;
 
   @GET('/search.json')

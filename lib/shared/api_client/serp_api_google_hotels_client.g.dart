@@ -8,7 +8,7 @@ part of 'serp_api_google_hotels_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
-class _SerpApiGoogleHotelClient implements SerpApiGoogleHotelClient {
+class _SerpApiGoogleHotelClient implements SerpApiGoogleHotelsClient {
   _SerpApiGoogleHotelClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://serpapi.com';
   }
