@@ -2,15 +2,10 @@
 
 A new Flutter project.
 
-## Getting Started
+## AI Agents usage 
 
-This project is a starting point for a Flutter application.
+### Create Serp API Google Hotels Client
 
-A few resources to get you started if this is your first Flutter project:
+AI Agent: Github Copilot Agent + GPT-4.1
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I've used AI agents to help create the API client by passing cURL request and response to the AI agent, which then generated the Dart code for the API client. I've ensured that the generated code follows Dart style guidelines (camelCase names, etc.).
