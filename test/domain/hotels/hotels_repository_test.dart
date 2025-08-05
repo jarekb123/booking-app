@@ -36,6 +36,7 @@ void main() {
             query: any(named: 'query'),
             currency: any(named: 'currency'),
             nextPageToken: any(named: 'nextPageToken'),
+            apiKey: 'api_key',
           ),
         ).thenAnswer(
           (_) async => SerpApiGoogleHotelsResponse(
@@ -81,6 +82,7 @@ void main() {
             query: query,
             currency: currency,
             nextPageToken: pageToken,
+            apiKey: 'api_key',
           ),
         ).called(1);
       },
@@ -100,6 +102,7 @@ void main() {
           query: any(named: 'query'),
           currency: any(named: 'currency'),
           nextPageToken: any(named: 'nextPageToken'),
+          apiKey: 'api_key',
         ),
       ).thenAnswer((_) async => SerpApiGoogleHotelsResponse(properties: []));
 
@@ -119,6 +122,7 @@ void main() {
           query: query,
           currency: currency,
           nextPageToken: null,
+          apiKey: 'api_key',
         ),
       ).called(1);
     });

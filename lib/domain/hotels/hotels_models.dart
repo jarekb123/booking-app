@@ -1,7 +1,7 @@
 import 'package:booking_app/shared/models/money.dart';
 import 'package:equatable/equatable.dart';
 
-class SearchedHotel extends Equatable {
+class SearchedHotel with EquatableMixin {
   final String name;
   final List<String> thumbnailsUrls;
   final double? overallRating;
@@ -26,7 +26,7 @@ class SearchedHotel extends Equatable {
   ];
 }
 
-class SearchedHotelResponse extends Equatable {
+class SearchedHotelResponse with EquatableMixin {
   final List<SearchedHotel> hotels;
   final String? nextPageToken;
 

@@ -25,12 +25,15 @@ class ApiHotelsRepository implements HotelsRepository {
     String? currency,
     String? pageToken,
   }) async {
+    final apiKey =
+        '1097db85f35bc88c9294f5e6d2077253148354cf5b383693e71899237412e442'; // Replace with your actual API key
     final response = await _client.getHotels(
       checkInDate: _formatDate(checkInDate),
       checkOutDate: _formatDate(checkOutDate),
       query: query,
       currency: currency,
       nextPageToken: pageToken,
+      apiKey: apiKey,
     );
     final properties = response.properties ?? [];
 
@@ -43,11 +46,12 @@ class ApiHotelsRepository implements HotelsRepository {
           overallRating: hotel.overallRating?.toDouble(),
           pricePerNight: Money(
             amountSmallestUnit:
-                hotel.ratePerNight?.extractedLowest?.toInt() ?? 0,
+                (hotel.ratePerNight?.extractedLowest?.toInt() ?? 0) * 100,
             currency: currency ?? '',
           ),
           totalPrice: Money(
-            amountSmallestUnit: hotel.totalRate?.extractedLowest?.toInt() ?? 0,
+            amountSmallestUnit:
+                (hotel.totalRate?.extractedLowest?.toInt() ?? 0) * 100,
             currency: currency ?? '',
           ),
         );

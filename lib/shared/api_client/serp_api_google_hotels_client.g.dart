@@ -8,8 +8,8 @@ part of 'serp_api_google_hotels_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
-class _SerpApiGoogleHotelClient implements SerpApiGoogleHotelsClient {
-  _SerpApiGoogleHotelClient(this._dio, {this.baseUrl, this.errorLogger}) {
+class _SerpApiGoogleHotelsClient implements SerpApiGoogleHotelsClient {
+  _SerpApiGoogleHotelsClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://serpapi.com';
   }
 
@@ -24,16 +24,20 @@ class _SerpApiGoogleHotelClient implements SerpApiGoogleHotelsClient {
     required String checkInDate,
     required String checkOutDate,
     required String query,
+    required String apiKey,
     String? currency,
     String? nextPageToken,
+    String engine = 'google_hotels',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'check_in_date': checkInDate,
       r'check_out_date': checkOutDate,
       r'q': query,
+      r'api_key': apiKey,
       r'currency': currency,
       r'next_page_token': nextPageToken,
+      r'engine': engine,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
