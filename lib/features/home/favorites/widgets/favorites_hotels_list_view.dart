@@ -29,9 +29,6 @@ class FavoritesHotelsListView extends StatelessWidget {
                 ? hotel.thumbnailsUrls.first
                 : '',
             title: hotel.name,
-            pricePerNight: hotel.pricePerNight.format(),
-            totalPrice: hotel.totalPrice.format(),
-            days: 5, // Example, can be dynamic
             rating: hotel.overallRating ?? 0,
           ),
         );

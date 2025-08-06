@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'hotel_image.dart';
-import 'hotel_price_tag.dart';
-import 'hotel_rating.dart';
+import 'package:booking_app/shared/ui/hotel_image.dart';
+import 'package:booking_app/shared/ui/hotel_rating.dart';
 
 class HotelListItem extends StatelessWidget {
   const HotelListItem({
     super.key,
     required this.imageUrl,
     required this.title,
-    required this.pricePerNight,
-    required this.totalPrice,
-    required this.days,
+    this.priceTag,
+    this.days,
     required this.rating,
     this.isFavorite = false,
     this.onFavoriteToggle,
@@ -18,9 +16,8 @@ class HotelListItem extends StatelessWidget {
 
   final String imageUrl;
   final String title;
-  final String pricePerNight;
-  final String totalPrice;
-  final int days;
+  final Widget? priceTag;
+  final int? days;
   final double rating;
   final bool isFavorite;
   final VoidCallback? onFavoriteToggle;
@@ -76,7 +73,7 @@ class HotelListItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                HotelPriceTag(price: totalPrice, days: days),
+                if (priceTag case final priceTag?) priceTag,
               ],
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:booking_app/domain/models/hotel.dart';
 import 'package:booking_app/features/home/favorites/favorites_cubit.dart';
 import 'package:booking_app/shared/ui/hotel_list_item.dart';
+import 'package:booking_app/shared/ui/hotel_price_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,9 +36,10 @@ class HotelsListView extends StatelessWidget {
                     ? hotel.thumbnailsUrls.first
                     : '',
                 title: hotel.name,
-                pricePerNight: hotel.pricePerNight.format(),
-                totalPrice: hotel.totalPrice.format(),
-                days: 5, // Example, can be dynamic
+                priceTag: HotelPriceTag(
+                  price: hotel.totalPrice.format(),
+                  days: 5,
+                ),
                 rating: hotel.overallRating ?? 0,
               );
             },
