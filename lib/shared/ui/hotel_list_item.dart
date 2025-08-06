@@ -13,7 +13,9 @@ class HotelListItem extends StatelessWidget {
     required this.days,
     required this.rating,
     this.isFavorite = false,
+    this.onFavoriteToggle,
   });
+
   final String imageUrl;
   final String title;
   final String pricePerNight;
@@ -21,6 +23,7 @@ class HotelListItem extends StatelessWidget {
   final int days;
   final double rating;
   final bool isFavorite;
+  final VoidCallback? onFavoriteToggle;
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +34,13 @@ class HotelListItem extends StatelessWidget {
         Positioned(
           top: 16,
           right: 16,
-          child: Icon(
-            isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: Colors.white,
-            size: 28,
+          child: IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              color: Colors.white,
+              size: 28,
+            ),
+            onPressed: onFavoriteToggle,
           ),
         ),
         Positioned(

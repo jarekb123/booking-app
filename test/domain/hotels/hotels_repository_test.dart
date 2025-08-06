@@ -1,13 +1,13 @@
 import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/domain/models/hotel.dart';
-import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
+import 'package:booking_app/shared/data_sources/google_hotels_data_source.dart';
 import 'package:booking_app/shared/models/money.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockSerpApiGoogleHotelsClient extends Mock
-    implements SerpApiGoogleHotelsClient {}
+    implements GoogleHotelsDataSource {}
 
 void main() {
   late MockSerpApiGoogleHotelsClient mockClient;
@@ -31,17 +31,14 @@ void main() {
 
         when(
           () => mockClient.getHotels(
-            checkInDate: any(named: 'checkInDate'),
-            checkOutDate: any(named: 'checkOutDate'),
-            query: any(named: 'query'),
             currency: any(named: 'currency'),
-            nextPageToken: any(named: 'nextPageToken'),
-            apiKey: 'api_key',
+            pageToken: any(named: 'pageToken'),
           ),
         ).thenAnswer(
           (_) async => SerpApiGoogleHotelsResponse(
             properties: [
               HotelProperty(
+                propertyToken: 'test-hotel',
                 name: 'Test Hotel',
                 images: [ImageData(thumbnail: 'http://example.com/image.jpg')],
                 overallRating: 4.5,
@@ -67,6 +64,7 @@ void main() {
         // Assert
         expect(result.hotels, [
           Hotel(
+            id: 'test-hotel',
             name: 'Test Hotel',
             thumbnailsUrls: ['http://example.com/image.jpg'],
             overallRating: 4.5,
@@ -76,14 +74,7 @@ void main() {
         ]);
         expect(result.nextPageToken, 'nextPageToken');
         verify(
-          () => mockClient.getHotels(
-            checkInDate: '2023-10-01',
-            checkOutDate: '2023-10-05',
-            query: query,
-            currency: currency,
-            nextPageToken: pageToken,
-            apiKey: 'api_key',
-          ),
+          () => mockClient.getHotels(currency: currency, pageToken: pageToken),
         ).called(1);
       },
     );
@@ -97,12 +88,8 @@ void main() {
 
       when(
         () => mockClient.getHotels(
-          checkInDate: any(named: 'checkInDate'),
-          checkOutDate: any(named: 'checkOutDate'),
-          query: any(named: 'query'),
+          pageToken: any(named: 'pageToken'),
           currency: any(named: 'currency'),
-          nextPageToken: any(named: 'nextPageToken'),
-          apiKey: 'api_key',
         ),
       ).thenAnswer((_) async => SerpApiGoogleHotelsResponse(properties: []));
 
@@ -117,12 +104,8 @@ void main() {
       // Assert
       verify(
         () => mockClient.getHotels(
-          checkInDate: '2023-10-01',
-          checkOutDate: '2023-10-05',
-          query: query,
           currency: currency,
-          nextPageToken: null,
-          apiKey: 'api_key',
+          pageToken: any(named: 'pageToken'),
         ),
       ).called(1);
     });

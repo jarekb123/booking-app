@@ -26,12 +26,19 @@ abstract class AsyncCubit<T> extends Cubit<AsyncState<T>> {
 
   Future<T> fetcher();
 
+  T? get data => switch (state) {
+    AsyncData<T>(:final data) => data,
+    _ => null,
+  };
+
   Future<void> load() async {
     emit(const AsyncLoading());
     try {
       final data = await fetcher();
       emit(AsyncData(data));
     } catch (e, stackTrace) {
+      print('Error in AsyncCubit: $e');
+      print('Stack trace: $stackTrace');
       emit(AsyncError(e, stackTrace));
     }
   }
