@@ -3,9 +3,8 @@ import 'package:booking_app/domain/hotels/hotels_repository.dart';
 import 'package:booking_app/shared/async_cubit/async_cubit.dart';
 
 class HotelsCubit extends AsyncCubit<SearchedHotelResponse> {
-  final HotelsRepository _repository;
-
   HotelsCubit(this._repository);
+  final HotelsRepository _repository;
 
   @override
   Future<SearchedHotelResponse> fetcher() {

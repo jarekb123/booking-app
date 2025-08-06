@@ -2,12 +2,6 @@ import 'package:booking_app/shared/models/money.dart';
 import 'package:equatable/equatable.dart';
 
 class SearchedHotel with EquatableMixin {
-  final String name;
-  final List<String> thumbnailsUrls;
-  final double? overallRating;
-  final Money pricePerNight;
-  final Money totalPrice;
-
   const SearchedHotel({
     required this.name,
     required this.thumbnailsUrls,
@@ -15,6 +9,12 @@ class SearchedHotel with EquatableMixin {
     required this.pricePerNight,
     required this.totalPrice,
   });
+
+  final String name;
+  final List<String> thumbnailsUrls;
+  final double? overallRating;
+  final Money pricePerNight;
+  final Money totalPrice;
 
   @override
   List<Object?> get props => [
@@ -27,10 +27,9 @@ class SearchedHotel with EquatableMixin {
 }
 
 class SearchedHotelResponse with EquatableMixin {
+  const SearchedHotelResponse({required this.hotels, this.nextPageToken});
   final List<SearchedHotel> hotels;
   final String? nextPageToken;
-
-  const SearchedHotelResponse({required this.hotels, this.nextPageToken});
 
   @override
   List<Object?> get props => [hotels, nextPageToken];

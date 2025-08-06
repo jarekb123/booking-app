@@ -5,18 +5,6 @@ part 'serp_api_google_hotels_models.g.dart';
 
 @JsonSerializable()
 class HotelProperty extends Equatable {
-  final String? name;
-  final String? description;
-  final String? propertyToken;
-  final GPSCoordinates? gpsCoordinates;
-  final String? checkInTime;
-  final String? checkOutTime;
-  final Rate? ratePerNight;
-  final Rate? totalRate;
-  final List<Price>? prices;
-  final List<ImageData>? images;
-  final num? overallRating;
-
   const HotelProperty({
     this.name,
     this.description,
@@ -31,7 +19,19 @@ class HotelProperty extends Equatable {
     this.overallRating,
   });
 
-  factory HotelProperty.fromJson(Map<String, dynamic> json) => _$HotelPropertyFromJson(json);
+  factory HotelProperty.fromJson(Map<String, dynamic> json) =>
+      _$HotelPropertyFromJson(json);
+  final String? name;
+  final String? description;
+  final String? propertyToken;
+  final GPSCoordinates? gpsCoordinates;
+  final String? checkInTime;
+  final String? checkOutTime;
+  final Rate? ratePerNight;
+  final Rate? totalRate;
+  final List<Price>? prices;
+  final List<ImageData>? images;
+  final num? overallRating;
   Map<String, dynamic> toJson() => _$HotelPropertyToJson(this);
 
   @override
@@ -40,12 +40,12 @@ class HotelProperty extends Equatable {
 
 @JsonSerializable()
 class GPSCoordinates extends Equatable {
-  final double? latitude;
-  final double? longitude;
-
   const GPSCoordinates({this.latitude, this.longitude});
 
-  factory GPSCoordinates.fromJson(Map<String, dynamic> json) => _$GPSCoordinatesFromJson(json);
+  factory GPSCoordinates.fromJson(Map<String, dynamic> json) =>
+      _$GPSCoordinatesFromJson(json);
+  final double? latitude;
+  final double? longitude;
   Map<String, dynamic> toJson() => _$GPSCoordinatesToJson(this);
 
   @override
@@ -54,11 +54,6 @@ class GPSCoordinates extends Equatable {
 
 @JsonSerializable()
 class Rate extends Equatable {
-  final String? lowest;
-  final int? extractedLowest;
-  final String? beforeTaxesFees;
-  final int? extractedBeforeTaxesFees;
-
   const Rate({
     this.lowest,
     this.extractedLowest,
@@ -67,6 +62,10 @@ class Rate extends Equatable {
   });
 
   factory Rate.fromJson(Map<String, dynamic> json) => _$RateFromJson(json);
+  final String? lowest;
+  final int? extractedLowest;
+  final String? beforeTaxesFees;
+  final int? extractedBeforeTaxesFees;
   Map<String, dynamic> toJson() => _$RateToJson(this);
 
   @override
@@ -75,14 +74,13 @@ class Rate extends Equatable {
 
 @JsonSerializable()
 class Price extends Equatable {
+  const Price({this.source, this.logo, this.numGuests, this.ratePerNight});
+
+  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
   final String? source;
   final String? logo;
   final int? numGuests;
   final Rate? ratePerNight;
-
-  const Price({this.source, this.logo, this.numGuests, this.ratePerNight});
-
-  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
   Map<String, dynamic> toJson() => _$PriceToJson(this);
 
   @override
@@ -91,12 +89,12 @@ class Price extends Equatable {
 
 @JsonSerializable()
 class NearbyPlace extends Equatable {
-  final String? name;
-  final List<Transportation>? transportations;
-
   const NearbyPlace({this.name, this.transportations});
 
-  factory NearbyPlace.fromJson(Map<String, dynamic> json) => _$NearbyPlaceFromJson(json);
+  factory NearbyPlace.fromJson(Map<String, dynamic> json) =>
+      _$NearbyPlaceFromJson(json);
+  final String? name;
+  final List<Transportation>? transportations;
   Map<String, dynamic> toJson() => _$NearbyPlaceToJson(this);
 
   @override
@@ -105,12 +103,12 @@ class NearbyPlace extends Equatable {
 
 @JsonSerializable()
 class Transportation extends Equatable {
-  final String? type;
-  final String? duration;
-
   const Transportation({this.type, this.duration});
 
-  factory Transportation.fromJson(Map<String, dynamic> json) => _$TransportationFromJson(json);
+  factory Transportation.fromJson(Map<String, dynamic> json) =>
+      _$TransportationFromJson(json);
+  final String? type;
+  final String? duration;
   Map<String, dynamic> toJson() => _$TransportationToJson(this);
 
   @override
@@ -119,12 +117,12 @@ class Transportation extends Equatable {
 
 @JsonSerializable()
 class ImageData extends Equatable {
-  final String? thumbnail;
-  final String? originalImage;
-
   const ImageData({this.thumbnail, this.originalImage});
 
-  factory ImageData.fromJson(Map<String, dynamic> json) => _$ImageDataFromJson(json);
+  factory ImageData.fromJson(Map<String, dynamic> json) =>
+      _$ImageDataFromJson(json);
+  final String? thumbnail;
+  final String? originalImage;
   Map<String, dynamic> toJson() => _$ImageDataToJson(this);
 
   @override
@@ -133,12 +131,12 @@ class ImageData extends Equatable {
 
 @JsonSerializable()
 class SerpApiGoogleHotelsResponse extends Equatable {
-  final List<HotelProperty>? properties;
-  final SerpApiPagination? serpapiPagination;
-
   const SerpApiGoogleHotelsResponse({this.properties, this.serpapiPagination});
 
-  factory SerpApiGoogleHotelsResponse.fromJson(Map<String, dynamic> json) => _$SerpApiGoogleHotelsResponseFromJson(json);
+  factory SerpApiGoogleHotelsResponse.fromJson(Map<String, dynamic> json) =>
+      _$SerpApiGoogleHotelsResponseFromJson(json);
+  final List<HotelProperty>? properties;
+  final SerpApiPagination? serpapiPagination;
   Map<String, dynamic> toJson() => _$SerpApiGoogleHotelsResponseToJson(this);
 
   @override
@@ -147,11 +145,6 @@ class SerpApiGoogleHotelsResponse extends Equatable {
 
 @JsonSerializable()
 class SerpApiPagination extends Equatable {
-  final int? currentFrom;
-  final int? currentTo;
-  final String? nextPageToken;
-  final String? next;
-
   const SerpApiPagination({
     this.currentFrom,
     this.currentTo,
@@ -159,7 +152,12 @@ class SerpApiPagination extends Equatable {
     this.next,
   });
 
-  factory SerpApiPagination.fromJson(Map<String, dynamic> json) => _$SerpApiPaginationFromJson(json);
+  factory SerpApiPagination.fromJson(Map<String, dynamic> json) =>
+      _$SerpApiPaginationFromJson(json);
+  final int? currentFrom;
+  final int? currentTo;
+  final String? nextPageToken;
+  final String? next;
   Map<String, dynamic> toJson() => _$SerpApiPaginationToJson(this);
 
   @override

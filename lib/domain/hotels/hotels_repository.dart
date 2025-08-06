@@ -13,9 +13,9 @@ abstract class HotelsRepository {
 }
 
 class ApiHotelsRepository implements HotelsRepository {
-  final SerpApiGoogleHotelsClient _client;
-
   ApiHotelsRepository(this._client);
+
+  final SerpApiGoogleHotelsClient _client;
 
   @override
   Future<SearchedHotelResponse> searchHotels({

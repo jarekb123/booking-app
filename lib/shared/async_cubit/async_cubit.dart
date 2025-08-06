@@ -9,16 +9,16 @@ class AsyncLoading<T> extends AsyncState<T> {
 }
 
 class AsyncData<T> extends AsyncState<T> {
-  final T data;
-
   const AsyncData(this.data);
+
+  final T data;
 }
 
 class AsyncError<T> extends AsyncState<T> {
+  const AsyncError(this.error, [this.stackTrace]);
+
   final Object error;
   final StackTrace? stackTrace;
-
-  const AsyncError(this.error, [this.stackTrace]);
 }
 
 abstract class AsyncCubit<T> extends Cubit<AsyncState<T>> {

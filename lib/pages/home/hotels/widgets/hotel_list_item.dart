@@ -4,14 +4,6 @@ import 'hotel_price_tag.dart';
 import 'hotel_rating.dart';
 
 class HotelListItem extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String pricePerNight;
-  final String totalPrice;
-  final int days;
-  final double rating;
-  final bool isFavorite;
-
   const HotelListItem({
     super.key,
     required this.imageUrl,
@@ -22,6 +14,13 @@ class HotelListItem extends StatelessWidget {
     required this.rating,
     this.isFavorite = false,
   });
+  final String imageUrl;
+  final String title;
+  final String pricePerNight;
+  final String totalPrice;
+  final int days;
+  final double rating;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {

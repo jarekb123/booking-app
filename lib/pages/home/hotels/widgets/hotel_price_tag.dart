@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HotelPriceTag extends StatelessWidget {
+  const HotelPriceTag({super.key, required this.price, required this.days});
+
   final String price;
   final int days;
-  const HotelPriceTag({super.key, required this.price, required this.days});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
