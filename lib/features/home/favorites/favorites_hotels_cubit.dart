@@ -11,14 +11,4 @@ class FavoritesHotelsCubit extends AsyncCubit<List<Hotel>> {
   Future<List<Hotel>> fetcher() {
     return _favoritesRepository.getFavoriteHotels();
   }
-
-  Future<void> removeFromFavorites(String hotelId) async {
-    await _favoritesRepository.removeFromFavorites(hotelId);
-    // optimistically update the state
-    if (data case final data?) {
-      final updatedData = [...data];
-      updatedData.removeWhere((hotel) => hotel.id == hotelId);
-      emit(AsyncData(updatedData));
-    }
-  }
 }

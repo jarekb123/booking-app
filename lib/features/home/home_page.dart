@@ -1,30 +1,46 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:booking_app/features/home/favorites/favorites_hotels_page.dart';
-import 'package:booking_app/features/home/hotels/hotels_page.dart';
+import 'package:booking_app/domain/favorites_repository.dart';
+import 'package:booking_app/features/home/favorites/favorites_cubit.dart';
+import 'package:booking_app/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_ce/hive.dart';
 
 @RoutePage()
-class HomePage extends HookWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final index = useState(0);
-
-    final pages = [HotelsPage(), FavoritesHotelsPage()];
-
-    return Scaffold(
-      body: pages[index.value],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: index.value,
-        onTap: (i) => index.value = i,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Overview'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Hotels'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Favorites'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Profile'),
-        ],
+    return BlocProvider(
+      create: (context) =>
+          FavoritesCubit(context.read<FavoritesRepository>())..load(),
+      child: AutoTabsScaffold(
+        homeIndex: 0,
+        routes: [HotelsRoute(), FavoritesHotelsRoute()],
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Hive.box<String>('favorites').clear();
+            Hive.box<Map>('hotels').clear();
+          },
+        ),
+        navigatorObservers: () => [AutoRouteObserver()],
+        bottomNavigationBuilder: (_, router) => BottomNavigationBar(
+          currentIndex: router.activeIndex,
+          onTap: router.setActiveIndex,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Overview'),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Hotels'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Favorites',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }
