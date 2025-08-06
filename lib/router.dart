@@ -4,5 +4,11 @@ import 'package:booking_app/router.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
   @override
-  List<AutoRoute> get routes => [AutoRoute(path: '/', page: HotelsRoute.page)];
+  List<AutoRoute> get routes => [
+    AutoRoute(
+      path: '/',
+      page: HomeRoute.page,
+      children: [AutoRoute(path: 'hotels', page: HotelsRoute.page)],
+    ),
+  ];
 }

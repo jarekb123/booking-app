@@ -1,5 +1,5 @@
-import 'package:booking_app/domain/hotels/hotels_models.dart';
-import 'package:booking_app/domain/hotels/hotels_repository.dart';
+import 'package:booking_app/domain/hotels_repository.dart';
+import 'package:booking_app/domain/models/hotel.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
 import 'package:booking_app/shared/models/money.dart';
@@ -66,7 +66,7 @@ void main() {
 
         // Assert
         expect(result.hotels, [
-          SearchedHotel(
+          Hotel(
             name: 'Test Hotel',
             thumbnailsUrls: ['http://example.com/image.jpg'],
             overallRating: 4.5,

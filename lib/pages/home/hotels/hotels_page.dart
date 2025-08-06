@@ -1,11 +1,11 @@
+import 'package:booking_app/domain/models/searched_hotels.dart';
+import 'package:booking_app/pages/home/hotels/hotels_cubit.dart';
+import 'package:booking_app/pages/home/hotels/widgets/hotels_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
-import 'hotels_cubit.dart';
-import 'widgets/hotel_list_item.dart';
-import 'package:booking_app/domain/hotels/hotels_repository.dart';
-import 'package:booking_app/domain/hotels/hotels_models.dart';
+import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/shared/async_cubit/async_cubit.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
 
@@ -28,47 +28,24 @@ class HotelsPage extends StatelessWidget {
           ),
       ),
     );
+
     return BlocProvider(
       create: (_) => HotelsCubit(hotelsRepository)..load(),
       child: Scaffold(
         appBar: AppBar(title: const Text('Hotels')),
-        body: BlocBuilder<HotelsCubit, AsyncState<SearchedHotelResponse>>(
+        body: BlocBuilder<HotelsCubit, AsyncState<SearchedHotels>>(
           builder: (context, state) {
-            if (state is AsyncLoading<SearchedHotelResponse>) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state is AsyncError<SearchedHotelResponse>) {
-              return Center(child: Text('Error loading hotels'));
-            }
-            if (state is AsyncData<SearchedHotelResponse>) {
-              final hotels = state.data.hotels;
-
-              if (hotels.isEmpty) {
-                return const Center(child: Text('No hotels found'));
-              }
-
-              return ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: hotels.length,
-                itemBuilder: (context, index) {
-                  final hotel = hotels[index];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: HotelListItem(
-                      imageUrl: hotel.thumbnailsUrls.isNotEmpty
-                          ? hotel.thumbnailsUrls.first
-                          : '',
-                      title: hotel.name,
-                      pricePerNight: hotel.pricePerNight.format(),
-                      totalPrice: hotel.totalPrice.format(),
-                      days: 5, // Example, can be dynamic
-                      rating: hotel.overallRating ?? 0,
-                    ),
-                  );
-                },
-              );
-            }
-            return const SizedBox.shrink();
+            return switch (state) {
+              AsyncLoading<SearchedHotels>() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              AsyncError<SearchedHotels>() => Center(
+                child: Text('Error loading hotels'),
+              ),
+              AsyncData<SearchedHotels>(:final data) => HotelsListView(
+                hotels: data.hotels,
+              ),
+            };
           },
         ),
       ),

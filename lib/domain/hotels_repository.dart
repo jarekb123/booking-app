@@ -1,9 +1,10 @@
-import 'package:booking_app/domain/hotels/hotels_models.dart';
+import 'package:booking_app/domain/models/hotel.dart';
+import 'package:booking_app/domain/models/searched_hotels.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
 import 'package:booking_app/shared/models/money.dart';
 
 abstract class HotelsRepository {
-  Future<SearchedHotelResponse> searchHotels({
+  Future<SearchedHotels> searchHotels({
     required DateTime checkInDate,
     required DateTime checkOutDate,
     required String query,
@@ -18,7 +19,7 @@ class ApiHotelsRepository implements HotelsRepository {
   final SerpApiGoogleHotelsClient _client;
 
   @override
-  Future<SearchedHotelResponse> searchHotels({
+  Future<SearchedHotels> searchHotels({
     required DateTime checkInDate,
     required DateTime checkOutDate,
     required String query,
@@ -37,9 +38,9 @@ class ApiHotelsRepository implements HotelsRepository {
     );
     final properties = response.properties ?? [];
 
-    return SearchedHotelResponse(
+    return SearchedHotels(
       hotels: properties.map((hotel) {
-        return SearchedHotel(
+        return Hotel(
           name: hotel.name ?? '',
           thumbnailsUrls:
               hotel.images?.map((img) => img.thumbnail ?? '').toList() ?? [],
