@@ -9,8 +9,10 @@ class AppRouter extends RootStackRouter {
       path: '/',
       page: HomeRoute.page,
       children: [
-        AutoRoute(path: 'hotels', page: HotelsRoute.page, initial: true),
+        AutoRoute(path: '', page: OverviewRoute.page, initial: true),
+        AutoRoute(path: 'hotels', page: HotelsRoute.page),
         AutoRoute(path: 'favorites', page: FavoritesHotelsRoute.page),
+        AutoRoute(path: 'profile', page: ProfileRoute.page),
       ],
     ),
   ];

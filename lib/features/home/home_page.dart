@@ -17,7 +17,12 @@ class HomePage extends StatelessWidget {
           FavoritesCubit(context.read<FavoritesRepository>())..load(),
       child: AutoTabsScaffold(
         homeIndex: 0,
-        routes: [HotelsRoute(), FavoritesHotelsRoute()],
+        routes: [
+          OverviewRoute(),
+          HotelsRoute(),
+          FavoritesHotelsRoute(),
+          ProfileRoute(),
+        ],
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Hive.box<String>('favorites').clear();
@@ -28,6 +33,9 @@ class HomePage extends StatelessWidget {
         bottomNavigationBuilder: (_, router) => BottomNavigationBar(
           currentIndex: router.activeIndex,
           onTap: router.setActiveIndex,
+          selectedItemColor: Colors.deepPurple,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Overview'),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Hotels'),
