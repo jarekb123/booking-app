@@ -34,7 +34,9 @@ void main() {
   patrolTest(
     '''
     As a user when I am on hotels tab and I add hotel to favorites,
-    then the hotel should be shown in favorites tab 
+    then the hotel should be shown in favorites tab,
+    and when I remove it from favorites,
+    it should not be shown in favorites tab
 ''',
     ($) async {
       await app.main(serpApiUrl: 'http://10.0.2.2:8080');
@@ -43,9 +45,19 @@ void main() {
       await $(
         K.hotelItem,
       ).containing('Padma Resort Ubud').$(K.favoriteIcon).tap();
+
+      // Navigate to favorites tab
       await $(K.favorites).tap();
       expect($(K.hotelItem), findsOneWidget);
       expect($(K.hotelItem).containing('Padma Resort Ubud'), findsOneWidget);
+
+      // Remove from favorites
+      await $(
+        K.hotelItem,
+      ).containing('Padma Resort Ubud').$(K.favoriteIcon).tap();
+
+      // Check if hotel is removed from favorites
+      expect($(K.hotelItem).containing('Padma Resort Ubud'), findsNothing);
     },
   );
 }
