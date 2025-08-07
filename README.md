@@ -5,7 +5,7 @@
 Run flutter app:
 
 ```bash
-flutter run
+flutter run --dart-define SERP_API_KEY=your_api_key
 ```
 
 ## How to run unit tests
