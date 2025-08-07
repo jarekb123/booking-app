@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
 import 'package:hive_ce/hive.dart';
@@ -45,7 +47,12 @@ class CachedGoogleHotelsDataSource {
 
     return Future.value(
       ids
-          .map((id) => (box.get(id) as Map).cast<String, dynamic>())
+          .map((id) => (box.get(id) as Map))
+          .map((e) {
+            // Workaround for Hive serialization issue
+            final decoded = json.decode(json.encode(e));
+            return decoded as Map<String, dynamic>;
+          })
           .map((e) => HotelProperty.fromJson(e))
           .toList(),
     );

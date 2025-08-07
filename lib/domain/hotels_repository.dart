@@ -10,6 +10,8 @@ abstract class HotelsRepository {
     String? currency,
     String? pageToken,
   });
+
+  Future<List<Hotel>> getHotelsByIds(List<String> ids);
 }
 
 class ApiHotelsRepository implements HotelsRepository {
@@ -37,5 +39,11 @@ class ApiHotelsRepository implements HotelsRepository {
           .toList(),
       nextPageToken: response.serpapiPagination?.nextPageToken,
     );
+  }
+
+  @override
+  Future<List<Hotel>> getHotelsByIds(List<String> ids) async {
+    final properties = await _source.getCachedHotels(ids: ids);
+    return properties.map((property) => Hotel.fromApi(property, null)).toList();
   }
 }

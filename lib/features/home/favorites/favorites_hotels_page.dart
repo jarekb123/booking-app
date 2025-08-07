@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booking_app/domain/favorites_repository.dart';
+import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/domain/models/hotel.dart';
 import 'package:booking_app/features/home/favorites/favorites_cubit.dart';
 import 'package:booking_app/features/home/favorites/favorites_hotels_cubit.dart';
@@ -15,8 +16,10 @@ class FavoritesHotelsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          FavoritesHotelsCubit(context.read<FavoritesRepository>())..load(),
+      create: (context) => FavoritesHotelsCubit(
+        context.read<FavoritesRepository>(),
+        context.read<HotelsRepository>(),
+      )..load(),
       child: BlocListener<FavoritesCubit, List<String>>(
         listener: (context, state) {
           context.read<FavoritesHotelsCubit>().refresh();

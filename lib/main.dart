@@ -32,10 +32,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
         RepositoryProvider<FavoritesRepository>(
-          create: (context) => LocalFavoritesRepository(
-            context.read<CachedGoogleHotelsDataSource>(),
-            context.read<HiveInterface>(),
-          ),
+          create: (context) =>
+              LocalFavoritesRepository(context.read<HiveInterface>()),
         ),
         RepositoryProvider<HotelsRepository>(
           create: (context) =>
