@@ -25,11 +25,17 @@ dart pub global activate patrol_cli
 
 Find out more: https://patrol.leancode.co/documentation
 
-1. Run mock server:
+2. Run mock server which mocks Serp API Google Hotels service:
 
 ```bash
 cd mock_server
 dart_frog dev
+```
+
+3. Run integration tests:
+
+```bash
+patrol test integration_test/booking_app_test.dart
 ```
 
 
@@ -71,3 +77,13 @@ The Favorites feature is structured around the following components:
 - **Favorites Cubit**: `FavoritesCubit` manages the state of favorite hotels. It listens for changes in the favorites and updates the UI accordingly. It's provided globally above the whole app to ensure that the favorites state is accessible and consistent throughout the application.
 - **Favorites Hotels Cubit**: `FavoritesHotelsCubit` extends the `AsyncCubit` to manage the state of favorite hotels specifically. It fetches hotel data from the `HotelsRepository`.
 - **Favorites Hotels Page**: `FavoritesHotelsPage` is the main entry point for the Favorites feature. It uses a BlocListener to listen for changes in the favorites and refreshes the hotel data accordingly. The page displays a list of favorite hotels using the `HotelListItem` component.
+- **Offline persistence**: If user adds hotel to favorites, it is persisted in the Hive database. When the app is restarted, the favorites are loaded from the Hive database and displayed in the Favorites page. Whenever some hotel is fetched from the Serp API, it is updated in the Hive database, so the favorites hotels are always up-to-date.
+
+
+## Third-party libraries
+
+- **hive_ce**: Used for local storage of favorite hotels. It provides a simple and efficient way to persist data locally.
+- **flutter_bloc**: Used for state management. It allows for reactive programming and separation of concerns
+- **equatable**: Used for value equality in models and states. It simplifies the comparison of objects by overriding the `==` operator and `hashCode`. It doesn't need code generation in comparison to `freezed`.
+- **dio** and **retrofit.dart**: Used for making HTTP requests to the Serp API Google Hotels service. Retrofit provides a type-safe way to define API endpoints and handle responses.
+- **patrol**: Used for integration testing. It provides a way to write end-to-end tests for the application, simulating user interactions and verifying the behavior of the app.
