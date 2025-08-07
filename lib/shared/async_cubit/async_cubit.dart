@@ -44,6 +44,10 @@ abstract class AsyncCubit<T> extends Cubit<AsyncState<T>> {
   }
 
   Future<void> refresh({bool emitError = false}) async {
+    if (state is! AsyncData<T>) {
+      emit(const AsyncLoading());
+    }
+
     try {
       final data = await fetcher();
       emit(AsyncData(data));
