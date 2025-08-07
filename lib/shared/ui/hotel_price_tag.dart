@@ -23,7 +23,7 @@ class HotelPriceTag extends StatelessWidget {
             children: [
               Text(
                 price,
-                style: theme.textTheme.titleLarge?.copyWith(
+                style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),

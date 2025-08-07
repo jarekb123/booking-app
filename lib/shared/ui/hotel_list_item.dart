@@ -1,3 +1,4 @@
+import 'package:booking_app/shared/ui/favorites_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_app/shared/ui/hotel_image.dart';
 import 'package:booking_app/shared/ui/hotel_rating.dart';
@@ -31,12 +32,8 @@ class HotelListItem extends StatelessWidget {
         Positioned(
           top: 16,
           right: 16,
-          child: IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: Colors.white,
-              size: 28,
-            ),
+          child: FavoritesIconButton(
+            isFavorite: isFavorite,
             onPressed: onFavoriteToggle,
           ),
         ),
