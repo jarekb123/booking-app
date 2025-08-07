@@ -60,4 +60,26 @@ void main() {
       expect($(K.hotelItem).containing('Padma Resort Ubud'), findsNothing);
     },
   );
+
+  patrolTest(
+    '''
+    As a user when I add a hotel to favorites,
+    then when I lose network connection,
+    I should be able to see the hotel in favorites tab
+  ''',
+    ($) async {
+      await app.main(serpApiUrl: 'http://10.0.2.2:8080');
+
+      await $(K.hotels).tap();
+      await $(
+        K.hotelItem,
+      ).containing('Padma Resort Ubud').$(K.favoriteIcon).tap();
+
+      await $.native.enableAirplaneMode();
+
+      await $(K.favorites).tap();
+      expect($(K.hotelItem), findsOneWidget);
+      expect($(K.hotelItem).containing('Padma Resort Ubud'), findsOneWidget);
+    },
+  );
 }
