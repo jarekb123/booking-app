@@ -14,7 +14,7 @@ class CachedGoogleHotelsDataSource {
     String? currency,
     String? pageToken,
   }) async {
-    final apiKey = const String.fromEnvironment('SERP_API_KEY');
+    const apiKey = String.fromEnvironment('SERP_API_KEY');
     final checkInDate = DateTime.now().add(Duration(days: 1));
     final checkOutDate = DateTime.now().add(Duration(days: 5));
 

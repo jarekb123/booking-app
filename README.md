@@ -87,3 +87,4 @@ The Favorites feature is structured around the following components:
 - **equatable**: Used for value equality in models and states. It simplifies the comparison of objects by overriding the `==` operator and `hashCode`. It doesn't need code generation in comparison to `freezed`.
 - **dio** and **retrofit.dart**: Used for making HTTP requests to the Serp API Google Hotels service. Retrofit provides a type-safe way to define API endpoints and handle responses.
 - **patrol**: Used for integration testing. It provides a way to write end-to-end tests for the application, simulating user interactions and verifying the behavior of the app.
+- **cached_network_image**: Used to cache network images and be able to preview the hotel image in favorites offline usage 
