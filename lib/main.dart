@@ -2,7 +2,7 @@ import 'package:booking_app/domain/favorites_repository.dart';
 import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/router.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
-import 'package:booking_app/shared/data_sources/google_hotels_data_source.dart';
+import 'package:booking_app/shared/data_sources/cached_google_hotels_data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,21 +25,21 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (_) => SerpApiGoogleHotelsClient(Dio())),
         RepositoryProvider<HiveInterface>.value(value: Hive),
-        RepositoryProvider<GoogleHotelsDataSource>(
-          create: (context) => GoogleHotelsDataSource(
+        RepositoryProvider<CachedGoogleHotelsDataSource>(
+          create: (context) => CachedGoogleHotelsDataSource(
             context.read<SerpApiGoogleHotelsClient>(),
             context.read<HiveInterface>(),
           ),
         ),
         RepositoryProvider<FavoritesRepository>(
           create: (context) => LocalFavoritesRepository(
-            context.read<GoogleHotelsDataSource>(),
+            context.read<CachedGoogleHotelsDataSource>(),
             context.read<HiveInterface>(),
           ),
         ),
         RepositoryProvider<HotelsRepository>(
           create: (context) =>
-              ApiHotelsRepository(context.read<GoogleHotelsDataSource>()),
+              ApiHotelsRepository(context.read<CachedGoogleHotelsDataSource>()),
         ),
         // Add other repositories here if needed
       ],

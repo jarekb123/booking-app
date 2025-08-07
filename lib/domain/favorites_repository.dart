@@ -1,5 +1,5 @@
 import 'package:booking_app/domain/models/hotel.dart';
-import 'package:booking_app/shared/data_sources/google_hotels_data_source.dart';
+import 'package:booking_app/shared/data_sources/cached_google_hotels_data_source.dart';
 import 'package:hive_ce/hive.dart';
 
 abstract interface class FavoritesRepository {
@@ -15,7 +15,7 @@ abstract interface class FavoritesRepository {
 class LocalFavoritesRepository implements FavoritesRepository {
   LocalFavoritesRepository(this._dataSource, this._hive);
 
-  final GoogleHotelsDataSource _dataSource;
+  final CachedGoogleHotelsDataSource _dataSource;
   final HiveInterface _hive;
 
   @override

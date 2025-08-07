@@ -2,8 +2,8 @@ import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
 import 'package:hive_ce/hive.dart';
 
-class GoogleHotelsDataSource {
-  GoogleHotelsDataSource(this._client, this._hive);
+class CachedGoogleHotelsDataSource {
+  CachedGoogleHotelsDataSource(this._client, this._hive);
 
   final SerpApiGoogleHotelsClient _client;
   final HiveInterface _hive;

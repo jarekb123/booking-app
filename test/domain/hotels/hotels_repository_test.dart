@@ -1,13 +1,13 @@
 import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/domain/models/hotel.dart';
 import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
-import 'package:booking_app/shared/data_sources/google_hotels_data_source.dart';
+import 'package:booking_app/shared/data_sources/cached_google_hotels_data_source.dart';
 import 'package:booking_app/shared/models/money.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockSerpApiGoogleHotelsClient extends Mock
-    implements GoogleHotelsDataSource {}
+    implements CachedGoogleHotelsDataSource {}
 
 void main() {
   late MockSerpApiGoogleHotelsClient mockClient;
