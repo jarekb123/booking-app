@@ -23,7 +23,7 @@ class HotelsPage extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(height: 16),
             itemBuilder: (context, hotel, index) {
               return HotelListItem(
-                imageUrl: hotel.thumbnailsUrls.first,
+                imageUrl: hotel.thumbnailsUrls.firstOrNull ?? '',
                 title: hotel.name,
                 rating: hotel.overallRating ?? 0,
                 priceTag: HotelPriceTag(
