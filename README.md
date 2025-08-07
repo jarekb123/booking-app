@@ -17,6 +17,8 @@ flutter test
 
 ## How to run integration tests
 
+Example: See the video in `docs/patrol.mov`
+
 1. Setup patrol_cli:
 
 ```bash
