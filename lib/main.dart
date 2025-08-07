@@ -1,8 +1,8 @@
+import 'package:booking_app/data/api_client/serp_api_google_hotels_client.dart';
+import 'package:booking_app/data/data_sources/cached_google_hotels_data_source.dart';
 import 'package:booking_app/domain/favorites_repository.dart';
 import 'package:booking_app/domain/hotels_repository.dart';
 import 'package:booking_app/router.dart';
-import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
-import 'package:booking_app/shared/data_sources/cached_google_hotels_data_source.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,5 +1,5 @@
-import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
-import 'package:booking_app/shared/models/money.dart';
+import 'package:booking_app/data/api_client/serp_api_google_hotels_models.dart';
+import 'package:booking_app/domain/models/money.dart';
 import 'package:equatable/equatable.dart';
 
 class Hotel with EquatableMixin {

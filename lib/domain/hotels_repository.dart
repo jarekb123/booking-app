@@ -1,6 +1,6 @@
+import 'package:booking_app/data/data_sources/cached_google_hotels_data_source.dart';
 import 'package:booking_app/domain/models/hotel.dart';
 import 'package:booking_app/domain/models/searched_hotels.dart';
-import 'package:booking_app/shared/data_sources/cached_google_hotels_data_source.dart';
 
 abstract class HotelsRepository {
   Future<SearchedHotels> searchHotels({

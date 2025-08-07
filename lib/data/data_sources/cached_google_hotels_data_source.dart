@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:booking_app/shared/api_client/serp_api_google_hotels_client.dart';
-import 'package:booking_app/shared/api_client/serp_api_google_hotels_models.dart';
+import 'package:booking_app/data/api_client/serp_api_google_hotels_client.dart';
+import 'package:booking_app/data/api_client/serp_api_google_hotels_models.dart';
 import 'package:hive_ce/hive.dart';
 
 class CachedGoogleHotelsDataSource {
@@ -29,6 +29,7 @@ class CachedGoogleHotelsDataSource {
       engine: 'google_hotels',
     );
 
+    // Cache the hotels in Hive
     final box = await _hive.openBox<Map>('hotels');
     final data =
         hotels.properties
