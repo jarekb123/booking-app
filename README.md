@@ -30,6 +30,8 @@ flutter test
 
 Example: See the video in `docs/patrol.mov`
 
+![docs/patrol.gif](docs/patrol.gif)
+
 1. Setup patrol_cli:
 
 ```bash
