@@ -1,5 +1,16 @@
 # booking_app
 
+1. [How to run](#how-to-run)
+2. [How to run unit tests](#how-to-run-unit-tests)
+3. [How to run integration tests](#how-to-run-integration-tests)
+4. [AI Agents usage](#ai-agents-usage)
+    1. [Create Serp API Google Hotels Client](#create-serp-api-google-hotels-client)
+5. [Features architecture decisions](#features-architecture-decisions)
+    1. [General](#general)
+    2. [Hotels](#hotels)
+    3. [Favorites](#favorites)
+6. [Third-party libraries](#third-party-libraries)
+
 ## How to run
 
 Run flutter app:
