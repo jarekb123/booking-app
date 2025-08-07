@@ -76,6 +76,7 @@ void main() {
       ).containing('Padma Resort Ubud').$(K.favoriteIcon).tap();
 
       await $.native.enableAirplaneMode();
+      addTearDown(() => $.native.disableAirplaneMode());
 
       await $(K.favorites).tap();
       expect($(K.hotelItem), findsOneWidget);
