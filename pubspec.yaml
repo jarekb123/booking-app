@@ -52,6 +52,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.9.5
   mocktail: ^1.0.4
+  patrol: ^3.19.0
   retrofit_generator: ^9.7.0
 
 # For information on the generic Dart part of this file, see the
@@ -89,3 +90,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+patrol:
+  app_name: Booking App
+  android:
+    package_name: com.example.booking_app
+  ios:
+    bundle_id: com.example.booking_app
+  macos:
+    bundle_id: com.example.macos.booking_app
