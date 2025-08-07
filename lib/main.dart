@@ -8,14 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
-Future<void> main() async {
+Future<void> main({String serpApiUrl = 'https://serpapi.com'}) async {
   await Hive.initFlutter();
 
-  runApp(MyApp());
+  runApp(MyApp(serpApiUrl: serpApiUrl));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  MyApp({super.key, this.serpApiUrl = 'https://serpapi.com'});
+
+  final String serpApiUrl;
 
   final _router = AppRouter();
 
@@ -23,7 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(create: (_) => SerpApiGoogleHotelsClient(Dio())),
+        RepositoryProvider(
+          create: (_) => SerpApiGoogleHotelsClient(Dio(), baseUrl: serpApiUrl),
+        ),
         RepositoryProvider<HiveInterface>.value(value: Hive),
         RepositoryProvider<CachedGoogleHotelsDataSource>(
           create: (context) => CachedGoogleHotelsDataSource(

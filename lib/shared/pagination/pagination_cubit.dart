@@ -49,6 +49,7 @@ abstract class PaginationCubit<PageKey, T>
       );
     } catch (e) {
       emit(PaginationState(hasError: true));
+      print(e);
       return;
     }
   }

@@ -1,4 +1,5 @@
 import 'package:booking_app/domain/models/hotel.dart';
+import 'package:booking_app/keys.dart';
 import 'package:booking_app/shared/ui/hotel_list_item.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,7 @@ class FavoritesHotelsListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: HotelListItem(
+            key: K.hotelItem,
             isFavorite: true,
             onFavoriteToggle: () => onRemove(hotel),
             imageUrl: hotel.thumbnailsUrls.isNotEmpty

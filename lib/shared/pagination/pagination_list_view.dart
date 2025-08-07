@@ -74,8 +74,7 @@ class _PaginationListViewState<PageKey, T>
         if (state.hasError && state.items.isEmpty) {
           return RetryMessage(
             message: 'Failed to load data',
-            onRetry: () =>
-                context.read<PaginationCubit<PageKey, T>>().getFirstPage(),
+            onRetry: () => _cubit.getFirstPage(),
           );
         }
         if (state.items.isEmpty) {

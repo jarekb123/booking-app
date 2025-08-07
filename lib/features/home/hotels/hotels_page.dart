@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booking_app/features/home/favorites/favorites_cubit.dart';
 import 'package:booking_app/features/home/hotels/hotels_cubit.dart';
+import 'package:booking_app/keys.dart';
 import 'package:booking_app/shared/pagination/pagination_list_view.dart';
 import 'package:booking_app/shared/ui/hotel_list_item.dart';
 import 'package:booking_app/shared/ui/hotel_price_tag.dart';
@@ -18,11 +19,13 @@ class HotelsPage extends StatelessWidget {
       body: BlocBuilder<FavoritesCubit, List<String>>(
         builder: (context, favorites) {
           return PaginationListView(
+            key: K.hotelsListView,
             create: (context) => HotelsCubit(context.read()),
             padding: const EdgeInsets.all(16),
             separatorBuilder: (context, index) => const SizedBox(height: 16),
             itemBuilder: (context, hotel, index) {
               return HotelListItem(
+                key: K.hotelItem,
                 imageUrl: hotel.thumbnailsUrls.firstOrNull ?? '',
                 title: hotel.name,
                 rating: hotel.overallRating ?? 0,

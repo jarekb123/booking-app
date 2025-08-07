@@ -44,6 +44,9 @@ android {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
     }
 
+    dependencies {
+        androidTestUtil("androidx.test:orchestrator:1.5.1")
+    }
     
 }
 

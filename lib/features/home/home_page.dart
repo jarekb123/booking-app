@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:booking_app/domain/favorites_repository.dart';
 import 'package:booking_app/features/home/favorites/favorites_cubit.dart';
+import 'package:booking_app/keys.dart';
 import 'package:booking_app/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,9 +39,14 @@ class HomePage extends StatelessWidget {
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Overview'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Hotels'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              key: K.hotels,
+              icon: Icon(Icons.hotel),
+              label: 'Hotels',
+            ),
+            BottomNavigationBarItem(
+              key: K.favorites,
+              icon: Icon(Icons.favorite),
               label: 'Favorites',
             ),
             BottomNavigationBarItem(

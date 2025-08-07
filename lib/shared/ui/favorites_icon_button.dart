@@ -1,3 +1,4 @@
+import 'package:booking_app/keys.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesIconButton extends StatelessWidget {
@@ -13,6 +14,7 @@ class FavoritesIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      key: K.favoriteIcon,
       color: Colors.black26,
       shape: const CircleBorder(),
       child: IconButton(

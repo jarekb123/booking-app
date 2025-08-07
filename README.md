@@ -15,6 +15,24 @@ Run tests:
 flutter test
 ```
 
+## How to run integration tests
+
+1. Setup patrol_cli:
+
+```bash
+dart pub global activate patrol_cli
+```
+
+Find out more: https://patrol.leancode.co/documentation
+
+1. Run mock server:
+
+```bash
+cd mock_server
+dart_frog dev
+```
+
+
 ## AI Agents usage 
 
 ### Create Serp API Google Hotels Client
