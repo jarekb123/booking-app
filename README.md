@@ -50,7 +50,7 @@ dart_frog dev
 3. Run integration tests:
 
 ```bash
-patrol test integration_test/booking_app_test.dart
+patrol test integration_test/booking_app_test.dart --dart-define SERP_API_KEY=your_api_key
 ```
 
 
