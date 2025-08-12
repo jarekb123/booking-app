@@ -13,6 +13,10 @@
 
 ## How to run
 
+Get Serp API key from:
+
+https://serpapi.com/
+
 Run flutter app:
 
 ```bash
@@ -48,6 +52,8 @@ dart_frog dev
 ```
 
 3. Run integration tests:
+
+For simplicity I've configured tests for Android Emulator only (check the API url in test file).
 
 ```bash
 patrol test integration_test/booking_app_test.dart --dart-define SERP_API_KEY=your_api_key
